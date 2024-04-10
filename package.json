@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern",
+    "prettier": "npx prettier . --write",
     "react-devtools": "react-devtools"
   },
   "dependencies": {

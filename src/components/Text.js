@@ -18,11 +18,20 @@ const styles = StyleSheet.create({
   colorTextAppbar: {
     color: theme.colors.textAppBar,
   },
+  colorTextItemLanguage: {
+    color: theme.colors.textItemLanguage
+  },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
   },
   fontSizeHeading: {
     fontSize: theme.fontSizes.heading,
+  },
+  fontSizeItemFullName: {
+    fontSize: theme.fontSizes.itemFullName
+  },
+  fontSizeItemDescription: {
+    fontSize: theme.fontSizes.itemDescription
   },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
@@ -35,8 +44,11 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "textSecondary" && styles.colorTextSecondary,
     color === "primary" && styles.colorPrimary,
     color === "textAppBar" && styles.colorTextAppbar,
+    color === "textItemLanguage" && styles.colorTextItemLanguage,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontSize === "heading" && styles.fontSizeHeading,
+    fontSize === "itemFullName" && styles.fontSizeItemFullName,
+    fontSize === "itemDescription" && styles.fontSizeItemDescription,
     fontWeight === "bold" && styles.fontWeightBold,
     style,
   ];

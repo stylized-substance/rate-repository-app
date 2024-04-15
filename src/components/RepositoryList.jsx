@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    gap: 50,
   },
   separator: {
     height: 10,

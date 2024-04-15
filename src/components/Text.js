@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
   fontSizeHeading: {
     fontSize: theme.fontSizes.heading,
   },
+  fontSizeAppBarTab: {
+    fontSize: theme.fontSizes.appBarTab,
+  },
   fontSizeItemFullName: {
     fontSize: theme.fontSizes.itemFullName,
   },
@@ -47,6 +50,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "textItemLanguage" && styles.colorTextItemLanguage,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontSize === "heading" && styles.fontSizeHeading,
+    fontSize === "appBarTab" && styles.fontSizeAppBarTab,
     fontSize === "itemFullName" && styles.fontSizeItemFullName,
     fontSize === "itemDescription" && styles.fontSizeItemDescription,
     fontWeight === "bold" && styles.fontWeightBold,

@@ -13,6 +13,7 @@ const theme = {
     body: 14,
     subheading: 16,
     heading: 30,
+    appBarTab: 20,
     itemFullName: 20,
     itemDescription: 18,
   },

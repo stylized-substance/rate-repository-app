@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 10,
   },
-  // ...
 });
 
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab text="Repositories" />
+      <AppBarTab text="Repositories" linkTo="/" />
+      <AppBarTab text="Sign in" linkTo="signin" />
     </View>
   );
 };

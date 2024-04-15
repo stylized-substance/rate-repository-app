@@ -1,18 +1,13 @@
-import { Pressable } from "react-native";
 import Text from "./Text";
+import { Link } from "react-router-native";
 
-const AppBarTab = ({ text }) => {
+const AppBarTab = ({ text, linkTo }) => {
   return (
-    <Pressable
-      onPress={() => {
-        console.log("press");
-      }}
-      android_ripple={{ color: "#00ffff" }}
-    >
-      <Text fontSize="heading" color="textAppBar">
+    <Link to={linkTo}>
+      <Text fontSize="appBarTab" color="textAppBar">
         {text}
       </Text>
-    </Pressable>
+    </Link>
   );
 };
 

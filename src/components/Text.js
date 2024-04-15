@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: theme.colors.textAppBar,
   },
   colorTextItemLanguage: {
-    color: theme.colors.textItemLanguage
+    color: theme.colors.textItemLanguage,
   },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.heading,
   },
   fontSizeItemFullName: {
-    fontSize: theme.fontSizes.itemFullName
+    fontSize: theme.fontSizes.itemFullName,
   },
   fontSizeItemDescription: {
-    fontSize: theme.fontSizes.itemDescription
+    fontSize: theme.fontSizes.itemDescription,
   },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,

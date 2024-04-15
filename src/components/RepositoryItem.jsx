@@ -6,9 +6,18 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    flexShrink: 1,
-    //alignSelf: "flex-start",
-    paddingTop: 50,
+    padding: 10,
+    backgroundColor: theme.colors.backgroundRepositoryItem,
+    flexRow: {
+      flexDirection: "row",
+      gap: 15,
+      alignContent: "flex-start",
+    },
+    flexColumn: {
+      flexDirection: "column",
+      gap: 5,
+      flexShrink: 1,
+    },
   },
   tinyLogo: {
     width: 50,
@@ -24,8 +33,8 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     alignSelf: "flex-start",
     padding: 4,
-    textColor: theme.colors.textSecondary
-  }
+    textColor: theme.colors.primary,
+  },
 });
 
 const RepositoryItem = ({ item }) => {
@@ -35,20 +44,36 @@ const RepositoryItem = ({ item }) => {
 
   return (
     <View style={styles.container}>
-      <Image src={item.ownerAvatarUrl} style={styles.tinyLogo} />
-      <Text fontSize="itemFullName" fontWeight="bold">{item.fullName}</Text>
-      <Text fontSize="itemDescription">{item.description}</Text>
-      <View style={styles.languageBadge}>
-        <Text color="textItemLanguage">{item.language}</Text>
+      <View style={styles.container.flexRow}>
+        <Image src={item.ownerAvatarUrl} style={styles.tinyLogo} />
+        <View style={styles.container.flexColumn}>
+          <Text fontSize="itemFullName" fontWeight="bold">
+            {item.fullName}
+          </Text>
+          <Text fontSize="itemDescription">{item.description}</Text>
+          <View style={styles.languageBadge}>
+            <Text color="textItemLanguage">{item.language}</Text>
+          </View>
+        </View>
       </View>
-      <Text fontWeight="bold">{roundToThousand(item.forksCount)}</Text>
-      <Text>Forks</Text>
-      <Text fontWeight="bold">{roundToThousand(item.stargazersCount)}</Text>
-      <Text>Stars</Text>
-      <Text fontWeight="bold">{item.ratingAverage}</Text>
-      <Text>Rating</Text>
-      <Text fontWeight="bold">{roundToThousand(item.reviewCount)}</Text>
-      <Text>Reviews</Text>
+      <View style={styles.container.flexRow}>
+        <View style={styles.container.flexColumn}>
+          <Text fontWeight="bold">{roundToThousand(item.forksCount)}</Text>
+          <Text>Forks</Text>
+        </View>
+        <View style={styles.container.flexColumn}>
+          <Text fontWeight="bold">{roundToThousand(item.stargazersCount)}</Text>
+          <Text>Stars</Text>
+        </View>
+        <View style={styles.container.flexColumn}>
+          <Text fontWeight="bold">{item.ratingAverage}</Text>
+          <Text>Rating</Text>
+        </View>
+        <View style={styles.container.flexColumn}>
+          <Text fontWeight="bold">{roundToThousand(item.reviewCount)}</Text>
+          <Text>Reviews</Text>
+        </View>
+      </View>
     </View>
   );
 };

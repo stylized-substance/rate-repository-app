@@ -8,15 +8,10 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     paddingBottom: 20,
     backgroundColor: theme.colors.backgroundAppBar,
-    display: "flex",
-    flexDirection: "row",
-    gap: 10,
-    //alignItems: "center",
-    //justifyContent: "center"
   },
   appBarTab: {
-    //gap: 20
-  }
+    paddingHorizontal: 5,
+  },
   });
 
 const AppBar = () => {
@@ -24,10 +19,10 @@ const AppBar = () => {
     <View style={styles.container}>
       <ScrollView horizontal>
         <View style={styles.appBarTab}>
-          <AppBarTab text="Repositories" linkTo="/" style={styles.appBarTab}/>
+          <AppBarTab text="Repositories" linkTo="/" />
         </View>
         <View style={styles.appBarTab}>
-          <AppBarTab text="Sign in" linkTo="signin" style={styles.appBarTab}/>
+          <AppBarTab text="Sign in" linkTo="signin" />
         </View>
       </ScrollView>
     </View>

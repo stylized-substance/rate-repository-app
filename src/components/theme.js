@@ -7,7 +7,7 @@ const theme = {
     primary: "#0366d6",
     backgroundAppBar: "#212f3d",
     backgroundMainComponent: "#e1e4e8",
-    backgroundRepositoryItem: "#ffffff",
+    backgroundContainer: "#ffffff",
   },
   fontSizes: {
     body: 14,
@@ -16,6 +16,7 @@ const theme = {
     appBarTab: 20,
     itemFullName: 20,
     itemDescription: 18,
+    buttonText: 20,
   },
   fonts: {
     main: "System",

@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
   fontSizeItemDescription: {
     fontSize: theme.fontSizes.itemDescription,
   },
+  fontSizeButtonText: {
+    fontSize: theme.fontSizes.buttonText,
+  },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
   },
@@ -53,6 +56,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     fontSize === "appBarTab" && styles.fontSizeAppBarTab,
     fontSize === "itemFullName" && styles.fontSizeItemFullName,
     fontSize === "itemDescription" && styles.fontSizeItemDescription,
+    fontSize === "buttonText" && styles.fontSizeButtonText,
     fontWeight === "bold" && styles.fontWeightBold,
     style,
   ];

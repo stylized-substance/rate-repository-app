@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     padding: 10,
-    backgroundColor: theme.colors.backgroundRepositoryItem,
+    backgroundColor: theme.colors.backgroundContainer,
     flexRow: {
       flexDirection: "row",
       gap: 15,

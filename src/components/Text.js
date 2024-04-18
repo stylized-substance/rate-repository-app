@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   colorTextItemLanguage: {
     color: theme.colors.textItemLanguage,
   },
+  colorTextError: {
+    color: theme.colors.textError,
+  },
   fontSizeSubheading: {
     fontSize: theme.fontSizes.subheading,
   },
@@ -51,6 +54,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "primary" && styles.colorPrimary,
     color === "textAppBar" && styles.colorTextAppbar,
     color === "textItemLanguage" && styles.colorTextItemLanguage,
+    color === "error" && styles.colorTextError,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontSize === "heading" && styles.fontSizeHeading,
     fontSize === "appBarTab" && styles.fontSizeAppBarTab,

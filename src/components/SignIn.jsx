@@ -2,6 +2,7 @@ import theme from "./theme";
 import Text from "./Text";
 import { TextInput, Pressable, View, StyleSheet } from "react-native";
 import { useFormik } from "formik";
+import * as yup from 'yup'
 
 const styles = StyleSheet.create({
   container: {
@@ -23,12 +24,22 @@ const styles = StyleSheet.create({
   },
 });
 
+const validationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .required(),
+  password: yup
+    .string()
+    .required()
+})
+
 const SignIn = () => {
   const formik = useFormik({
     initialValues: {
-      username: "Username",
-      password: "Password",
+      username: "",
+      password: "",
     },
+    validationSchema,
     onSubmit: (values) => {
       console.log(values);
     }
@@ -43,9 +54,12 @@ const SignIn = () => {
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
         />
+        <Text color="error">
+          Error text
+        </Text>
         <TextInput
           style={styles.textInput}
-          placeHolder="password"
+          placeHolder="Password"
           value={formik.values.password}
           onChangeText={formik.handleChange("password")}
           secureTextEntry

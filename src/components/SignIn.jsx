@@ -54,9 +54,9 @@ const SignIn = () => {
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
         />
-        <Text color="error">
-          Error text
-        </Text>
+        {formik.touched.username && formik.errors.username && (
+          <Text color="error">{formik.errors.username}</Text>
+        )}
         <TextInput
           style={styles.textInput}
           placeHolder="Password"
@@ -64,6 +64,9 @@ const SignIn = () => {
           onChangeText={formik.handleChange("password")}
           secureTextEntry
         />
+        {formik.touched.password && formik.errors.password && (
+          <Text color="error">{formik.errors.password}</Text>
+        )}
         <Pressable onPress={formik.handleSubmit}>
           <View style={styles.submitButton}>
             <Text fontSize="buttonText" color="textItemLanguage">

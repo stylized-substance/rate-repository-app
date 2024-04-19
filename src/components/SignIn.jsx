@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
   },
+  error: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: theme.colors.textError,
+    padding:10,
+  },
   submitButton: {
     backgroundColor: theme.colors.primary,
     borderRadius: 3,
@@ -27,45 +33,43 @@ const styles = StyleSheet.create({
 const validationSchema = yup.object().shape({
   username: yup
     .string()
-    .required(),
+    .required('Username is required'),
   password: yup
     .string()
-    .required()
+    .required('Password is required')
 })
 
-const SignIn = () => {
+const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    }
+    onSubmit,
   });
-
+  
   return (
     <>
       <View style={styles.container}>
         <TextInput
-          style={styles.textInput}
+          style={formik.errors.username ? styles.error : styles.textInput}
           placeHolder="Username"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
         />
         {formik.touched.username && formik.errors.username && (
-          <Text color="error">{formik.errors.username}</Text>
+          <Text color="error" fontSize="subheading">{formik.errors.username}</Text>
         )}
         <TextInput
-          style={styles.textInput}
+          style={formik.errors.password ? styles.error : styles.textInput}
           placeHolder="Password"
           value={formik.values.password}
           onChangeText={formik.handleChange("password")}
           secureTextEntry
         />
         {formik.touched.password && formik.errors.password && (
-          <Text color="error">{formik.errors.password}</Text>
+          <Text color="error" fontSize="subheading">{formik.errors.password}</Text>
         )}
         <Pressable onPress={formik.handleSubmit}>
           <View style={styles.submitButton}>
@@ -78,5 +82,13 @@ const SignIn = () => {
     </>
   );
 };
+
+const SignIn = () => {
+  const onSubmit = (values) => {
+    console.log(values);
+  }
+
+  return <SignInForm onSubmit={onSubmit} />
+}
 
 export default SignIn;

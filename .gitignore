@@ -2,3 +2,4 @@ node_modules
 .expo
 assets
 config.js
+.env

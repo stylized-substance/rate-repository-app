@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import apolloServerUri from '../config.js'
+import Constants from 'expo-constants'
 
 const createApolloClient = () => {
   return new ApolloClient({
-    uri: `${apolloServerUri}`,
+    uri: `${Constants.expoConfig.extra.APOLLO_URI}`,
     cache: new InMemoryCache(),
   });
 };

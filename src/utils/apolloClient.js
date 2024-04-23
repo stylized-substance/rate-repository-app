@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import apolloServerUri from '../components/config.js'
+import apolloServerUri from '../config.js'
 
 const createApolloClient = () => {
   return new ApolloClient({

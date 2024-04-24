@@ -3,6 +3,7 @@ import Text from "./Text";
 import { TextInput, Pressable, View, StyleSheet } from "react-native";
 import { useFormik } from "formik";
 import * as yup from 'yup'
+import useSignIn from "../hooks/useSignIn";
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +49,7 @@ const SignInForm = ({ onSubmit }) => {
     validationSchema,
     onSubmit,
   });
-  
+
   return (
     <>
       <View style={styles.container}>
@@ -71,7 +72,7 @@ const SignInForm = ({ onSubmit }) => {
         {formik.touched.password && formik.errors.password && (
           <Text color="error" fontSize="subheading">{formik.errors.password}</Text>
         )}
-        <Pressable onPress={formik.handleSubmit}>
+        <Pressable onPress={formik.handleSubmit(formik.values)}>
           <View style={styles.submitButton}>
             <Text fontSize="buttonText" color="textItemLanguage">
               Sign in
@@ -84,8 +85,9 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = ({ username, password }) => {
+    //useSignIn({ username: username, password: password})
+    console.log(username)
   }
 
   return <SignInForm onSubmit={onSubmit} />

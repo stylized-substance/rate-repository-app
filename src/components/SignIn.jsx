@@ -42,7 +42,7 @@ const SignIn = () => {
   const onSubmit = async (values) => {
     try {
       const data = await signIn(values)
-      console.log(data)
+      console.log(data.data.authenticate)
     } catch (error) {
       console.log(error)
     }

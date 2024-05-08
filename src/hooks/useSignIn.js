@@ -12,7 +12,7 @@ const useSignIn = () => {
   const signIn = async (credentials) => {
     const mutation = await mutate({ variables: { credentials } });
     await authStorage.setAccessToken(mutation.data.authenticate);
-    apolloClient.resetStore();
+    await apolloClient.resetStore();
 
     return mutation;
   };

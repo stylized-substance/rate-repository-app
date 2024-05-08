@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import "dotenv/config";
 
 export default {
   name: "rate-repository-app",
@@ -27,6 +27,6 @@ export default {
   },
   extra: {
     env: process.env.ENV,
-    APOLLO_URI: process.env.APOLLO_URI
-  }
+    APOLLO_URI: process.env.APOLLO_URI,
+  },
 };

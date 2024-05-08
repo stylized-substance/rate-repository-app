@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const AUTHENTICATE = gql`
   mutation authenticate($credentials: AuthenticateInput) {
@@ -6,4 +6,4 @@ export const AUTHENTICATE = gql`
       accessToken
     }
   }
-`
+`;

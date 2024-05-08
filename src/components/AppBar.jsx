@@ -16,19 +16,22 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const [getToken, getUser] = useLoggedInUser();
-
-  console.log('token', getToken);
-  console.log('user', getUser);
+  const user = useLoggedInUser();
+  const onPress = () => {
+    user.logout();
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <View style={styles.appBarTab}>
-          <AppBarTab text="Repositories" linkTo="/" />
+          <AppBarTab text="Repositories" type="link" linkTo="/" />
         </View>
         <View style={styles.appBarTab}>
-          <AppBarTab text="Sign in" linkTo="signin" />
+          {user.loggedInUser && <AppBarTab text="Sign out" onPress={onPress} />}
+          {!user.loggedInUser && (
+            <AppBarTab text="Sign in" type="link" linkTo="signin" />
+          )}
         </View>
       </ScrollView>
     </View>

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-native";
 import { useContext } from "react";
 import LoggedInUserContext from "../contexts/LoggedInUserContext";
 
-const SignIn = () => {
+const SignInContainer = ({ onSubmit }) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "column",
@@ -40,22 +40,6 @@ const SignIn = () => {
     password: yup.string().required("Password is required"),
   });
 
-  const [signIn] = useSignIn();
-  const user = useContext(LoggedInUserContext);
-  const navigate = useNavigate();
-
-  const onSubmit = async (values) => {
-    try {
-      const { data } = await signIn(values);
-      if (data.authenticate.accessToken) {
-        user.setLoggedInUser(values.username);
-        navigate("/");
-      }
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -70,7 +54,7 @@ const SignIn = () => {
       <View style={styles.container}>
         <TextInput
           style={formik.errors.username ? styles.error : styles.textInput}
-          placeHolder="Username"
+          placeholder="Username"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
         />
@@ -81,7 +65,7 @@ const SignIn = () => {
         )}
         <TextInput
           style={formik.errors.password ? styles.error : styles.textInput}
-          placeHolder="Password"
+          placeholder="Password"
           value={formik.values.password}
           onChangeText={formik.handleChange("password")}
           secureTextEntry
@@ -103,4 +87,25 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const SignIn = () => {
+  const user = useContext(LoggedInUserContext);
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    try {
+      const { data } = await signIn(values);
+      if (data.authenticate.accessToken) {
+        user.setLoggedInUser(values.username);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  return <SignInContainer onSubmit={onSubmit} />
+}
+
+export default SignIn
+export { SignInContainer }

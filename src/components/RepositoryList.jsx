@@ -35,3 +35,4 @@ const RepositoryList = () => {
 };
 
 export default RepositoryList;
+export { RepositoryListContainer }

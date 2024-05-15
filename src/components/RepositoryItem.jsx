@@ -1,10 +1,13 @@
-import { View, Image, StyleSheet, Pressable } from "react-native";
+import { View, Image, StyleSheet, Pressable, ScrollView } from "react-native";
 import Text from "./Text";
 import theme from "./theme";
 import { useNavigate, useParams } from "react-router-native";
 import useRepository from "../hooks/useRepository";
+import useReviews from "../hooks/useReviews";
 import { useState, useEffect } from "react";
 import * as Linking from "expo-linking";
+import { FlatList } from "react-native";
+import { format } from "date-fns";
 
 const styles = StyleSheet.create({
   container: {
@@ -48,11 +51,64 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 5,
   },
+  reviewScore: {
+    alignItems: "center",
+    borderWidth: 3,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderColor: theme.colors.primary,
+    padding: 7,
+  },
+  separator: {
+    height: 10,
+  },
 });
 
+const ReviewItem = ({ review }) => {
+  console.log("review", review);
+  return (
+    <View style={styles.container}>
+      <View style={styles.container.flexRow}>
+        <View style={styles.container.flexRow}>
+          <View style={styles.reviewScore}>
+            <Text fontSize="heading" color="primary">
+              {review.rating}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.container.flexColumn}>
+          <Text fontWeight="bold" fontSize="itemFullName">
+            {review.user.username}
+          </Text>
+          <Text fontSize="itemDescription">
+            {format(format(review.createdAt, "yyyy-MM-dd"), "dd.MM.yyyy")}
+          </Text>
+          <Text fontSize="itemDescription">{review.text}</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+const Reviews = () => {
+  const { reviews, loading } = useReviews(useParams().id);
+  if (loading) {
+    return null;
+  }
+
+  return (
+    <FlatList
+      data={reviews}
+      ItemSeparatorComponent={<View style={styles.separator} />}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => <ReviewItem review={item.node} />}
+    />
+  );
+};
+
 const RepositoryItem = ({ item }) => {
-  const navigate = useNavigate();
   const repositoryId = useParams().id;
+  const navigate = useNavigate();
   const [itemToRender, setItemToRender] = useState(null);
   const { singleRepository, loading } = useRepository(repositoryId);
 
@@ -133,6 +189,7 @@ const RepositoryItem = ({ item }) => {
                 </Text>
               </View>
             </Pressable>
+            <Reviews />
           </View>
         )}
       </Pressable>

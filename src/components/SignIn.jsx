@@ -104,8 +104,8 @@ const SignIn = () => {
     }
   };
 
-  return <SignInContainer onSubmit={onSubmit} />
-}
+  return <SignInContainer onSubmit={onSubmit} />;
+};
 
-export default SignIn
-export { SignInContainer }
+export default SignIn;
+export { SignInContainer };

@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.backgroundAppBar,
   },
   appBarTab: {
-    paddingHorizontal: 5,
+    flex: 1,
+    flexGrow: 1,
+    gap: 20,
+    justifyContent: "center",
   },
 });
 
@@ -23,17 +26,18 @@ const AppBar = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal>
-        <View style={styles.appBarTab}>
+      <View>
+        <ScrollView horizontal contentContainerStyle={styles.appBarTab}>
           <AppBarTab text="Repositories" type="link" linkTo="/" />
-        </View>
-        <View style={styles.appBarTab}>
+          {user.loggedInUser && (
+            <AppBarTab text="Create a review" type="link" linkTo="review" />
+          )}
           {user.loggedInUser && <AppBarTab text="Sign out" onPress={onPress} />}
           {!user.loggedInUser && (
             <AppBarTab text="Sign in" type="link" linkTo="signin" />
           )}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 };

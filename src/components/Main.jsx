@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import RepositoryList from "./RepositoryList";
-import RepositoryItem from "./RepositoryItem";
 import SignIn from "./SignIn";
 import AppBar from "./AppBar";
+import SingleRepositoryView from "./SingleRepositoryView";
 import theme from "./theme";
 import { Route, Routes, Navigate } from "react-router-native";
 
@@ -20,7 +20,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<RepositoryList />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/:id" element={<RepositoryItem />} />
+        <Route path="/:id" element={<SingleRepositoryView />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>

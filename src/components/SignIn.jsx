@@ -5,8 +5,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import useSignIn from "../hooks/useSignIn";
 import { useNavigate } from "react-router-native";
-import { useContext } from "react";
-import LoggedInUserContext from "../contexts/LoggedInUserContext";
 
 const SignInContainer = ({ onSubmit }) => {
   const styles = StyleSheet.create({
@@ -88,17 +86,12 @@ const SignInContainer = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const user = useContext(LoggedInUserContext);
+  
   const [signIn] = useSignIn();
-  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     try {
-      const { data } = await signIn(values);
-      if (data.authenticate.accessToken) {
-        user.setLoggedInUser(values.username);
-        navigate("/");
-      }
+      await signIn(values);
     } catch (error) {
       console.log("Error:", error);
     }

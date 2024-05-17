@@ -53,9 +53,9 @@ const SignupContainer = ({ onSubmit, errorMessage }) => {
 
   const formik = useFormik({
     initialValues: {
-      username: "aaaaa",
-      password: "aaaaa",
-      passwordConfirm: "aaaaa",
+      username: "",
+      password: "",
+      passwordConfirm: "",
     },
     validationSchema,
     onSubmit,

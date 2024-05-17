@@ -29,9 +29,12 @@ const RepositoryListContainer = ({ repositories }) => {
 };
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const { repositoriesLatest } = useRepositories('CREATED_AT', 'DESC');
+  //const { repositoriesHighestRated } = useRepositories('RATING_AVERAGE', 'DESC');
+  //const { repositoriesLowestRated } = useRepositories('RATING_AVERAGE', 'ASC');
 
-  return <RepositoryListContainer repositories={repositories} />;
+
+  return <RepositoryListContainer repositories={repositoriesLatest} />;
 };
 
 export default RepositoryList;

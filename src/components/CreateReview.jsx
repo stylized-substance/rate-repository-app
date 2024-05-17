@@ -4,7 +4,7 @@ import theme from "./theme";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-native";
-import useCreateReview from '../hooks/useCreateReview'
+import useCreateReview from "../hooks/useCreateReview";
 
 const CreateReviewContainer = ({ onSubmit }) => {
   const styles = StyleSheet.create({
@@ -36,11 +36,12 @@ const CreateReviewContainer = ({ onSubmit }) => {
   const validationSchema = yup.object().shape({
     ownerName: yup.string().required("Repository owner name is required"),
     repositoryName: yup.string().required("Repository name is required"),
-    rating: yup.number()
+    rating: yup
+      .number()
       .required("Rating is required")
       .min(0, "Rating must be between 0 and 10")
       .max(10, "Rating must be between 0 and 10"),
-    text: yup.string("Review must be a text string")
+    text: yup.string("Review must be a text string"),
   });
 
   const formik = useFormik({
@@ -48,7 +49,7 @@ const CreateReviewContainer = ({ onSubmit }) => {
       repositoryName: "formik",
       ownerName: "jaredpalmer",
       rating: "10",
-      text: "asd"
+      text: "asd",
     },
     validationSchema,
     onSubmit,
@@ -115,13 +116,18 @@ const CreateReviewContainer = ({ onSubmit }) => {
 };
 
 const CreateReview = () => {
-  const [ createReview, result ] = useCreateReview()
+  const [createReview] = useCreateReview();
+  const navigate = useNavigate();
 
   const onSubmit = async (review) => {
     try {
-      console.log('create')
-      const res = await createReview(review)
-      console.log(res)
+      const reviewWithIntRating = {
+        ...review,
+        rating: Number(review.rating),
+      };
+      const result = await createReview(reviewWithIntRating);
+      const id = result.data.createReview.repositoryId;
+      navigate(`/${id}`);
     } catch (error) {
       console.log("Error:", error);
     }

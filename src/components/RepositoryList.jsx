@@ -32,25 +32,28 @@ const RepositoryListContainer = ({ repositories }) => {
   );
 };
 
-const PickerComponent = ({
-  orderBy,
-  setOrderBy,
-  orderDirection,
-  setOrderDirection,
-}) => {
-  return (
-    <Picker
-      selectedValue={orderDirection}
-      onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
-    >
-      <Picker.item label="Ascending" value="ASC" />
-      {/* <Picker.item label="Descending" value="DESC" /> */}
-    </Picker>
-    //null
-  );
-};
+// const PickerComponent = ({
+//   orderBy,
+//   setOrderBy,
+//   orderDirection,
+//   setOrderDirection,
+// }) => {
+//   return (
+//     <Picker
+//       selectedValue={orderDirection}
+//       onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
+//     >
+//       <Picker.item label="Ascending" value="ASC" />
+//       {/* <Picker.item label="Descending" value="DESC" /> */}
+//     </Picker>
+//     //null
+//   );
+// };
 
 const RepositoryList = () => {
+  // const [orderBy, setOrderBy] = useState("CREATED_AT");
+  // const [orderDirection, setOrderDirection] = useState("ASC");
+
   const [orderBy, setOrderBy] = useState("CREATED_AT");
   const [orderDirection, setOrderDirection] = useState("ASC");
 
@@ -59,20 +62,22 @@ const RepositoryList = () => {
 
   return (
     <View style={styles.container}>
-      {/* <PickerComponent
-        orderBy={orderBy}
-        setOrderBy={setOrderBy}
-        orderDirection={orderDirection}
-        setOrderDirection={setOrderDirection}
-      /> */}
-    <Picker
-      selectedValue={orderDirection}
-      onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
-    >
-      <Picker.item label="Ascending" value="ASC" />
-      {/* <Picker.item label="Descending" value="DESC" /> */}
-    </Picker>
-    <RepositoryListContainer repositories={repositories} />;
+      <Picker
+        selectedValue={orderDirection}
+        onValueChange={(itemValue) => setOrderDirection(itemValue)}
+      >
+        <Picker.Item label="Ascending" value="ASC" />
+        <Picker.Item label="Descending" value="DESC" />
+      </Picker>
+      <Picker
+        selectedValue={orderBy}
+        onValueChange={(itemValue) => setOrderBy(itemValue)}
+      >
+        <Picker.Item label="Ascending" value="CREATED_AT" />
+        <Picker.Item label="Descending" value="RATING_AVERAGE" />
+      </Picker>
+
+      <RepositoryListContainer repositories={repositories} />;
     </View>
   );
 };

@@ -1,6 +1,8 @@
 import { FlatList, View, StyleSheet } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../hooks/useRepositories";
+import { useState } from "react";
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +21,8 @@ const RepositoryListContainer = ({ repositories }) => {
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
+  console.log("repositories", repositoryNodes);
+
   return (
     <FlatList
       data={repositoryNodes}
@@ -28,13 +32,49 @@ const RepositoryListContainer = ({ repositories }) => {
   );
 };
 
+const PickerComponent = ({
+  orderBy,
+  setOrderBy,
+  orderDirection,
+  setOrderDirection,
+}) => {
+  return (
+    <Picker
+      selectedValue={orderDirection}
+      onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
+    >
+      <Picker.item label="Ascending" value="ASC" />
+      {/* <Picker.item label="Descending" value="DESC" /> */}
+    </Picker>
+    //null
+  );
+};
+
 const RepositoryList = () => {
-  const { repositoriesLatest } = useRepositories('CREATED_AT', 'DESC');
-  //const { repositoriesHighestRated } = useRepositories('RATING_AVERAGE', 'DESC');
-  //const { repositoriesLowestRated } = useRepositories('RATING_AVERAGE', 'ASC');
+  const [orderBy, setOrderBy] = useState("CREATED_AT");
+  const [orderDirection, setOrderDirection] = useState("ASC");
 
+  const { repositories } = useRepositories(orderBy, orderDirection);
+  console.log("repositories", repositories);
 
-  return <RepositoryListContainer repositories={repositoriesLatest} />;
+  return (
+    <View style={styles.container}>
+      {/* <PickerComponent
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
+        orderDirection={orderDirection}
+        setOrderDirection={setOrderDirection}
+      /> */}
+    <Picker
+      selectedValue={orderDirection}
+      onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
+    >
+      <Picker.item label="Ascending" value="ASC" />
+      {/* <Picker.item label="Descending" value="DESC" /> */}
+    </Picker>
+    <RepositoryListContainer repositories={repositories} />;
+    </View>
+  );
 };
 
 export default RepositoryList;

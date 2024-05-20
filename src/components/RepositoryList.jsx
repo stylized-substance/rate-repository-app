@@ -31,18 +31,18 @@ const RepositoryListContainer = ({ repositories }) => {
 };
 
 const RepositoryList = () => {
-  const [order, setOrder] = useState(JSON.stringify({sortBy: "CREATED_AT", direction: "DESC"}));
+  const [order, setOrder] = useState('{"sortBy": "CREATED_AT", "direction": "DESC"}');
   const { repositories } = useRepositories(JSON.parse(order));
-
+  console.log(JSON.parse(order))
   return (
     <View style={styles.container}>
       <Picker
         selectedValue={order}
         onValueChange={(itemValue) => setOrder(itemValue)}
       >
-        <Picker.Item label="Latest repositories" value={JSON.stringify({sortBy: "CREATED_AT", direction: "DESC"})} />
-        <Picker.Item label="Highest rated repositories" value={JSON.stringify({sortBy: "RATING_AVERAGE", direction: "DESC"})} />
-        <Picker.Item label="Lowest rated repositories" value={JSON.stringify({sortBy: "RATING_AVERAGE", direction: "ASC"})} />
+        <Picker.Item label="Latest repositories" value={'{"sortBy": "CREATED_AT", "direction": "DESC"}'} />
+        <Picker.Item label="Highest rated repositories" value={'{"sortBy": "RATING_AVERAGE", "direction": "DESC"}'} />
+        <Picker.Item label="Lowest rated repositories" value={'{"sortBy": "RATING_AVERAGE", "direction": "ASC"}'} />
       </Picker>
       <RepositoryListContainer repositories={repositories} />
     </View>

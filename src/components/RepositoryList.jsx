@@ -21,8 +21,6 @@ const RepositoryListContainer = ({ repositories }) => {
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
-  console.log("repositories", repositoryNodes);
-
   return (
     <FlatList
       data={repositoryNodes}
@@ -32,52 +30,21 @@ const RepositoryListContainer = ({ repositories }) => {
   );
 };
 
-// const PickerComponent = ({
-//   orderBy,
-//   setOrderBy,
-//   orderDirection,
-//   setOrderDirection,
-// }) => {
-//   return (
-//     <Picker
-//       selectedValue={orderDirection}
-//       onValueChange={(itemValue, itemIndex) => setOrderDirection(itemValue)}
-//     >
-//       <Picker.item label="Ascending" value="ASC" />
-//       {/* <Picker.item label="Descending" value="DESC" /> */}
-//     </Picker>
-//     //null
-//   );
-// };
-
 const RepositoryList = () => {
-  // const [orderBy, setOrderBy] = useState("CREATED_AT");
-  // const [orderDirection, setOrderDirection] = useState("ASC");
-
-  const [orderBy, setOrderBy] = useState("CREATED_AT");
-  const [orderDirection, setOrderDirection] = useState("ASC");
-
-  const { repositories } = useRepositories(orderBy, orderDirection);
-  console.log("repositories", repositories);
+  const [order, setOrder] = useState(JSON.stringify({sortBy: "CREATED_AT", direction: "DESC"}));
+  const { repositories } = useRepositories(JSON.parse(order));
 
   return (
     <View style={styles.container}>
       <Picker
-        selectedValue={orderDirection}
-        onValueChange={(itemValue) => setOrderDirection(itemValue)}
+        selectedValue={order}
+        onValueChange={(itemValue) => setOrder(itemValue)}
       >
-        <Picker.Item label="Ascending" value="ASC" />
-        <Picker.Item label="Descending" value="DESC" />
+        <Picker.Item label="Latest repositories" value={JSON.stringify({sortBy: "CREATED_AT", direction: "DESC"})} />
+        <Picker.Item label="Highest rated repositories" value={JSON.stringify({sortBy: "RATING_AVERAGE", direction: "DESC"})} />
+        <Picker.Item label="Lowest rated repositories" value={JSON.stringify({sortBy: "RATING_AVERAGE", direction: "ASC"})} />
       </Picker>
-      <Picker
-        selectedValue={orderBy}
-        onValueChange={(itemValue) => setOrderBy(itemValue)}
-      >
-        <Picker.Item label="Ascending" value="CREATED_AT" />
-        <Picker.Item label="Descending" value="RATING_AVERAGE" />
-      </Picker>
-
-      <RepositoryListContainer repositories={repositories} />;
+      <RepositoryListContainer repositories={repositories} />
     </View>
   );
 };

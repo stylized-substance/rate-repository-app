@@ -32,6 +32,10 @@ const AppBar = () => {
           {user.loggedInUser && (
             <AppBarTab text="Create a review" type="link" linkTo="review" />
           )}
+          {user.loggedInUser && (
+            <AppBarTab text="My reviews" type="link" linkTo="myreviews" />
+          )}
+
           {user.loggedInUser && <AppBarTab text="Sign out" onPress={onPress} />}
           {!user.loggedInUser && (
             <AppBarTab text="Sign in" type="link" linkTo="signin" />

@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-native";
 import { useContext } from "react";
 import LoggedInUserContext from "../contexts/LoggedInUserContext";
 
-
 const useSignIn = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const user = useContext(LoggedInUserContext);
 
   const [mutate, result] = useMutation(AUTHENTICATE);
@@ -20,7 +19,7 @@ const useSignIn = () => {
     await authStorage.setAccessToken(mutation.data.authenticate);
     await apolloClient.resetStore();
     user.setLoggedInUser(credentials.username);
-    navigate('/')
+    navigate("/");
 
     return mutation;
   };

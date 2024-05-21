@@ -13,7 +13,8 @@ export const CREATEUSER = gql`
     createUser(user: $user) {
       username
     }
-  }`
+  }
+`;
 
 export const CREATEREVIEW = gql`
   mutation CreateReview($review: CreateReviewInput) {

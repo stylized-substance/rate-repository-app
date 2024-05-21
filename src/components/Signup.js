@@ -119,21 +119,21 @@ const SignupContainer = ({ onSubmit, errorMessage }) => {
 };
 
 const Signup = () => {
-  const [ signIn ] = useSignIn();
-  const [ signup ] = useSignup();
-  const [ errorMessage, setErrorMessage ] = useState()
+  const [signIn] = useSignIn();
+  const [signup] = useSignup();
+  const [errorMessage, setErrorMessage] = useState();
 
   const onSubmit = async (values) => {
     try {
       const user = {
         username: values.username,
-        password: values.password
-      }
+        password: values.password,
+      };
       await signup(user);
-      signIn(user)
+      signIn(user);
     } catch (error) {
       console.log("Error:", error);
-      setErrorMessage(String(error))
+      setErrorMessage(String(error));
     }
   };
 

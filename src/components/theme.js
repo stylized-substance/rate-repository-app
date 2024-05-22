@@ -6,6 +6,7 @@ const theme = {
     textItemLanguage: "#ffffff",
     textError: "#d73a4a",
     primary: "#0366d6",
+    secondary: "#dc143c",
     backgroundAppBar: "#212f3d",
     backgroundMainComponent: "#e1e4e8",
     backgroundContainer: "#ffffff",

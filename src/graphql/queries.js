@@ -80,6 +80,8 @@ export const ME = gql`
             text
             createdAt
             rating
+            repositoryId
+            id
             repository {
               fullName
             }

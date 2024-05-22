@@ -11,15 +11,15 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const MyReviews = () => {
-  const { reviews } = useMyReviews();
-
+  const { reviews, refetch } = useMyReviews();
+  console.log('reviews', reviews)
   const reviewNodes = reviews ? reviews.edges.map((edge) => edge.node) : [];
 
   return (
     <FlatList
       data={reviewNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => <ReviewItem review={item} refetch={refetch} />}
     />
   );
 };

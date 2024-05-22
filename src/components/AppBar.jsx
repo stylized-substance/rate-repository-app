@@ -3,6 +3,8 @@ import Constants from "expo-constants";
 import AppBarTab from "./AppBarTab";
 import theme from "./theme";
 import useLoggedInUser from "../hooks/useLoggedInUser.js";
+import { useNavigate } from "react-router-native";
+
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +21,11 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const navigate = useNavigate();
   const user = useLoggedInUser();
   const onPress = () => {
     user.logout();
+    navigate('/')
   };
 
   return (

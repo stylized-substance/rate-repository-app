@@ -46,10 +46,10 @@ const CreateReviewContainer = ({ onSubmit }) => {
 
   const formik = useFormik({
     initialValues: {
-      repositoryName: "formik",
-      ownerName: "jaredpalmer",
-      rating: "10",
-      text: "asd",
+      repositoryName: "",
+      ownerName: "",
+      rating: "",
+      text: "",
     },
     validationSchema,
     onSubmit,

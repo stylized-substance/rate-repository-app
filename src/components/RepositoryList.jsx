@@ -58,33 +58,40 @@ const PickerComponent = ({ order, setOrder }) => {
 
 export class RepositoryListContainer extends React.Component {
   renderHeader = () => {
+    const props = this.props
+
     return (
       <>
         <TextInput
           style={styles.searchInput}
           placeholder="Search"
-          value={this.props.searchText}
-          onChangeText={this.props.onChangeSearchText}
+          value={props.searchText}
+          onChangeText={props.onChangeSearchText}
         />
         <PickerComponent
-          order={this.props.order}
-          setOrder={this.props.setOrder}
+          order={props.order}
+          setOrder={props.setOrder}
         />
       </>
     );
   };
-
+  
   render() {
-    const repositoryNodes = this.props.repositories
-      ? this.props.repositories.edges.map((edge) => edge.node)
-      : [];
-
+    const props = this.props
+    console.log(props.onEndReach)
+    
+    const repositoryNodes = props.repositories
+    ? props.repositories.edges?.map((edge) => edge.node)
+    : [];
+    
     return (
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <RepositoryItem item={item} />}
         ListHeaderComponent={this.renderHeader}
+        onEndReached={props.onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   }
@@ -97,11 +104,16 @@ const RepositoryList = () => {
   const [searchText, setSearchText] = useState();
   const [delayedText] = useDebounce(searchText, 500);
 
-  const { repositories } = useRepositories(JSON.parse(order), delayedText);
-
+  const { repositories, fetchMore } = useRepositories(JSON.parse(order), delayedText);
+  
   const onChangeSearchText = (text) => {
     setSearchText(text);
   };
+  
+  const onEndReach = () => {
+    //console.log('fetchMore', fetchMore())
+    fetchMore()
+  }
 
   return (
     <View style={styles.container}>
@@ -113,6 +125,7 @@ const RepositoryList = () => {
         onChangeSearchText={onChangeSearchText}
         order={order}
         setOrder={setOrder}
+        onEndReach={fetchMore}
       />
     </View>
   );

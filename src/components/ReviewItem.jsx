@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
   button: {
     paddingTop: 10,
   },
+  buttonText: {
+    padding: 10
+  },
   viewRepositoryButton: {
     backgroundColor: theme.colors.primary,
     borderRadius: 3,
@@ -109,14 +112,14 @@ const ReviewItem = ({ review, refetch }) => {
             style={styles.button}
           >
             <View style={styles.viewRepositoryButton}>
-              <Text fontSize="buttonText" color="textItemLanguage">
+              <Text fontSize="buttonText" color="textItemLanguage" style={styles.buttonText}>
                 View repository
               </Text>
             </View>
           </Pressable>
           <Pressable onPress={alert} style={styles.button}>
             <View style={styles.deleteReviewButton}>
-              <Text fontSize="buttonText" color="textItemLanguage">
+              <Text fontSize="buttonText" color="textItemLanguage" style={styles.buttonText}>
                 Delete review
               </Text>
             </View>

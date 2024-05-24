@@ -78,7 +78,6 @@ export class RepositoryListContainer extends React.Component {
   
   render() {
     const props = this.props
-    console.log(props.onEndReach)
     
     const repositoryNodes = props.repositories
     ? props.repositories.edges?.map((edge) => edge.node)
@@ -110,11 +109,6 @@ const RepositoryList = () => {
     setSearchText(text);
   };
   
-  const onEndReach = () => {
-    //console.log('fetchMore', fetchMore())
-    fetchMore()
-  }
-
   return (
     <View style={styles.container}>
       <RepositoryListContainer

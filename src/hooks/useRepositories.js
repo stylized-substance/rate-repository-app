@@ -14,7 +14,6 @@ const useRepositories = (order, searchKeyword, after) => {
       after: after,
     },
   });
-  console.log()
 
   const handleFetchMore = () => {
     const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
@@ -22,10 +21,12 @@ const useRepositories = (order, searchKeyword, after) => {
     if (!canFetchMore) {
       return;
     }
-    console.log("endCursor", data.repositories.pageInfo.endCursor);
 
-    const res = fetchMore();
-    console.log('res', res)
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+      }
+    });
   };
 
   if (loading) {

@@ -12,7 +12,6 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const MyReviews = () => {
   const { reviews, refetch } = useMyReviews();
-  console.log('reviews', reviews)
   const reviewNodes = reviews ? reviews.edges.map((edge) => edge.node) : [];
 
   return (

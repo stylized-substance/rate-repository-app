@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 const SingleRepositoryView = () => {
   const repositoryId = useParams().id;
   const { singleRepository } = useRepository(repositoryId);
-  const { reviews } = useReviews(useParams().id);
+  const { reviews, fetchMore } = useReviews(useParams().id);
 
   const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -46,6 +46,8 @@ const SingleRepositoryView = () => {
         <RepositoryItem item={singleRepository} inSingleRepoView={true} />
       }
       ListFooterComponent={<ItemSeparator style={styles.separator} />}
+      onEndReached={fetchMore}
+      onEndReachedThreshold={0.5}
     />
   );
 };

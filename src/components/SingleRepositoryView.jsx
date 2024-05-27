@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 const SingleRepositoryView = () => {
   const repositoryId = useParams().id;
   const { singleRepository } = useRepository(repositoryId);
-  const { reviews, fetchMore } = useReviews(useParams().id);
+  const { reviews, fetchMore } = useReviews(repositoryId);
 
   const ItemSeparator = () => <View style={styles.separator} />;
 

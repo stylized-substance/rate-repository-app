@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable,Alert } from "react-native";
+import { View, StyleSheet, Pressable, Alert } from "react-native";
 import Text from "./Text";
 import theme from "./theme";
 import { format } from "date-fns";
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       gap: 15,
       alignSelf: "center",
-    }
+    },
   },
   reviewScore: {
     alignItems: "center",
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   buttonText: {
-    padding: 10
+    padding: 10,
   },
   viewRepositoryButton: {
     backgroundColor: theme.colors.primary,
@@ -56,29 +56,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReviewItem = ({ review, refetch }) => {
+const ReviewItem = ({ review }) => {
   const navigate = useNavigate();
-  const [ deleteReview ] = useDeleteReview()
+  const [deleteReview] = useDeleteReview();
   const repositoryId = review.repositoryId;
-  const reviewId = review.id
+  const reviewId = review.id;
 
   const onDelete = () => {
-    deleteReview(reviewId)
+    deleteReview(reviewId);
   };
 
   const alert = () => {
-    Alert.alert('Delete review', 'Are you sure?', [
+    Alert.alert("Delete review", "Are you sure?", [
       {
-        text: 'Cancel',
+        text: "Cancel",
         onPress: () => {},
-        style: 'cancel',
+        style: "cancel",
       },
       {
-        text: 'Delete',
+        text: "Delete",
         onPress: () => onDelete(),
-      }
-    ])
-  }
+      },
+    ]);
+  };
 
   return (
     <View style={styles.container}>
@@ -112,14 +112,22 @@ const ReviewItem = ({ review, refetch }) => {
             style={styles.button}
           >
             <View style={styles.viewRepositoryButton}>
-              <Text fontSize="buttonText" color="textItemLanguage" style={styles.buttonText}>
+              <Text
+                fontSize="buttonText"
+                color="textItemLanguage"
+                style={styles.buttonText}
+              >
                 View repository
               </Text>
             </View>
           </Pressable>
           <Pressable onPress={alert} style={styles.button}>
             <View style={styles.deleteReviewButton}>
-              <Text fontSize="buttonText" color="textItemLanguage" style={styles.buttonText}>
+              <Text
+                fontSize="buttonText"
+                color="textItemLanguage"
+                style={styles.buttonText}
+              >
                 Delete review
               </Text>
             </View>

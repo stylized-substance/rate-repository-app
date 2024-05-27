@@ -57,11 +57,7 @@ export const GET_SINGLE_REPOSITORY = gql`
 `;
 
 export const GET_REVIEWS = gql`
-  query (
-    $repositoryId: ID!
-    $first: Int
-    $after: String
-  ) {
+  query ($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
       reviews(first: $first, after: $after) {
         edges {
@@ -86,6 +82,7 @@ export const GET_REVIEWS = gql`
           startCursor
         }
       }
+      name
     }
   }
 `;

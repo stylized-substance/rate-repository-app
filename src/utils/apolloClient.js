@@ -13,14 +13,14 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        repositories: relayStylePagination()
+        repositories: relayStylePagination(),
       },
     },
     Repository: {
       fields: {
-        repositories: relayStylePagination()
+        reviews: relayStylePagination(),
       },
-    }
+    },
   },
 });
 

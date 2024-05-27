@@ -58,7 +58,7 @@ const PickerComponent = ({ order, setOrder }) => {
 
 export class RepositoryListContainer extends React.Component {
   renderHeader = () => {
-    const props = this.props
+    const props = this.props;
 
     return (
       <>
@@ -68,26 +68,24 @@ export class RepositoryListContainer extends React.Component {
           value={props.searchText}
           onChangeText={props.onChangeSearchText}
         />
-        <PickerComponent
-          order={props.order}
-          setOrder={props.setOrder}
-        />
+        <PickerComponent order={props.order} setOrder={props.setOrder} />
       </>
     );
   };
-  
+
   render() {
-    const props = this.props
-    
+    const props = this.props;
+
     const repositoryNodes = props.repositories
-    ? props.repositories.edges?.map((edge) => edge.node)
-    : [];
-    
+      ? props.repositories.edges?.map((edge) => edge.node)
+      : [];
+
     return (
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <RepositoryItem item={item} />}
+        keyExtractor={(item) => item.id}
         ListHeaderComponent={this.renderHeader}
         onEndReached={props.onEndReach}
         onEndReachedThreshold={0.5}
@@ -103,12 +101,15 @@ const RepositoryList = () => {
   const [searchText, setSearchText] = useState();
   const [delayedText] = useDebounce(searchText, 500);
 
-  const { repositories, fetchMore } = useRepositories(JSON.parse(order), delayedText);
-  
+  const { repositories, fetchMore } = useRepositories(
+    JSON.parse(order),
+    delayedText,
+  );
+
   const onChangeSearchText = (text) => {
     setSearchText(text);
   };
-  
+
   return (
     <View style={styles.container}>
       <RepositoryListContainer

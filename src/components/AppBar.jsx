@@ -5,7 +5,6 @@ import theme from "./theme";
 import useLoggedInUser from "../hooks/useLoggedInUser.js";
 import { useNavigate } from "react-router-native";
 
-
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
@@ -25,7 +24,7 @@ const AppBar = () => {
   const user = useLoggedInUser();
   const onPress = () => {
     user.logout();
-    navigate('/')
+    navigate("/");
   };
 
   return (

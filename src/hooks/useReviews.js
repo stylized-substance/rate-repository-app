@@ -7,25 +7,22 @@ const useReviews = (repositoryId, after) => {
     variables: {
       repositoryId: repositoryId,
       first: 3,
-      after: after
+      after: after,
     },
   });
 
-  //console.log({...result.variables})
   const handleFetchMore = () => {
-    const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
-    console.log({canFetchMore})
-    console.log('endcursor', data?.repository.reviews.pageInfo.endCursor)
-    
+    const canFetchMore =
+      !loading && data?.repository.reviews.pageInfo.hasNextPage;
+
     if (!canFetchMore) {
       return;
     }
-    console.log('fetchMore')
-    
+
     fetchMore({
       variables: {
         after: data.repository.reviews.pageInfo.endCursor,
-      }
+      },
     });
   };
 

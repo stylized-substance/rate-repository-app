@@ -25,7 +25,7 @@ const useRepositories = (order, searchKeyword, after) => {
     fetchMore({
       variables: {
         after: data.repositories.pageInfo.endCursor,
-      }
+      },
     });
   };
 
